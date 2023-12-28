@@ -18,7 +18,38 @@ void initDisplay(){
 }
 
 void markBoard(char coord, int player_num){
-    
+    switch (coord)
+    {
+    case 1:
+        board[1][2] = player_num;
+        break;
+    case 2:
+        board[1][7] = player_num;
+        break;
+    case 3:
+        board[1][12] = player_num;
+        break;
+    case 4:
+        board[5][2] = player_num;
+        break;
+    case 5:
+        board[5][7] = player_num;
+        break;
+    case 6:
+        board[5][12] = player_num;
+        break;
+    case 7:
+        board[9][2] = player_num;
+        break;
+    case 8:
+        board[9][7] = player_num;
+        break;
+    case 9:
+        board[9][12] = player_num;
+        break;
+    default:
+        break;
+    }
 }
 
 void drawBoard(){
