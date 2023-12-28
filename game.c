@@ -92,10 +92,11 @@ int main(void){
     while (1){
         drawBoard();
         printf("Player %d, it's your turn! \nWhere do you want to play?", player_num);
-        char input;
+        int input;
+        //int ch;
         do{
             scanf(" %c",&input);
-            getchar();
+            // while ((ch = getchar()) != '\n');
             if (input < 49 || input > 57){
                 printf("Please enter a number 1-9:");
             }
