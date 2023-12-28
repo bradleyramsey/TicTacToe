@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #define BOARD_HEIGHT 9
 #define BOARD_WIDTH 17
@@ -21,10 +22,18 @@ void initDisplay(){
     }
 }
 
+// Switch the player
 void switchPlayer(){
     if (player_num == 1) {player_num = 2;}
     else {player_num = 1;}
 }
+
+/* Mark the board with an X or O in the coordinate passed
+ * Input: char coord: A char from 1-9 representing a square on the board
+ *        int player_num: An int holding value 1 or 2 representing the 
+ *                        the corresponding player
+ * Output: None, the board is updated to contain the players move
+ */
 void markBoard(char coord, int player_num){
     int spaceIndex = coord - '0'-1;
     switch (coord)
@@ -115,7 +124,9 @@ int main(void){
                 printf("Someone has already played here! Please enter an open tile:");
             }
         } while ((input < 49 || input > 57) || spaceOpen[input-'0'-1] > 0);
-        markBoard(input, player_num); // Mark an X or O on the board 
+        markBoard(input, player_num); // Mark an X or O on the board
+        checkWin(); 
         switchPlayer(); // Switch to other player
+        system("cls");
     }
 }
