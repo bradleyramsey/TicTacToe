@@ -4,6 +4,10 @@
 #define BOARD_WIDTH 17
 int board [BOARD_HEIGHT][BOARD_WIDTH];
 int player_num = 1;
+
+/*
+TODO: Win Conditions, Overwriting other players moves
+*/
 void initDisplay(){
     for (int row = 0; row < BOARD_HEIGHT; row++){
         for (int col = 0; col < BOARD_WIDTH; col++){
