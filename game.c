@@ -38,22 +38,22 @@ void markBoard(char coord, int player_num){
         board[1][14] = player_num;
         break;
     case '4':
-        board[5][2] = player_num;
+        board[4][2] = player_num;
         break;
     case '5':
-        board[5][8] = player_num;
+        board[4][8] = player_num;
         break;
     case '6':
-        board[5][14] = player_num;
+        board[4][14] = player_num;
         break;
     case '7':
-        board[9][2] = player_num;
+        board[7][2] = player_num;
         break;
     case '8':
-        board[9][8] = player_num;
+        board[7][8] = player_num;
         break;
     case '9':
-        board[9][14] = player_num;
+        board[7][14] = player_num;
         break;
     default:
         break;
