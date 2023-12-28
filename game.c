@@ -1,51 +1,55 @@
 #include <stdio.h>
 #include <string.h>
-#define BOARD_HEIGHT 10
-#define BOARD_WIDTH 15
+#define BOARD_HEIGHT 9
+#define BOARD_WIDTH 17
 int board [BOARD_HEIGHT][BOARD_WIDTH];
 int player_num = 1;
 void initDisplay(){
     for (int row = 0; row < BOARD_HEIGHT; row++){
         for (int col = 0; col < BOARD_WIDTH; col++){
-            if (col == 5 || col == 10){
+            if (col == 5 || col == 11){
                 board[row][col] = -1;
             }
-            else if (row == 3 || row == 6){
+            else if (row == 2 || row == 5){
                 board[row][col] = -2;
             }
         }
     }
 }
 
+void switchPlayer(){
+    if (player_num == 1) {player_num = 2;}
+    else {player_num = 1;}
+}
 void markBoard(char coord, int player_num){
     switch (coord)
     {
-    case 1:
+    case '1':
         board[1][2] = player_num;
         break;
-    case 2:
-        board[1][7] = player_num;
+    case '2':
+        board[1][8] = player_num;
         break;
-    case 3:
-        board[1][12] = player_num;
+    case '3':
+        board[1][14] = player_num;
         break;
-    case 4:
+    case '4':
         board[5][2] = player_num;
         break;
-    case 5:
-        board[5][7] = player_num;
+    case '5':
+        board[5][8] = player_num;
         break;
-    case 6:
-        board[5][12] = player_num;
+    case '6':
+        board[5][14] = player_num;
         break;
-    case 7:
+    case '7':
         board[9][2] = player_num;
         break;
-    case 8:
-        board[9][7] = player_num;
+    case '8':
+        board[9][8] = player_num;
         break;
-    case 9:
-        board[9][12] = player_num;
+    case '9':
+        board[9][14] = player_num;
         break;
     default:
         break;
@@ -64,10 +68,10 @@ void drawBoard(){
                 printf("_");
                 break;
             case 1:
-                printf("/");
+                printf("X");
                 break;
             case 2:
-                printf("\\");
+                printf("O");
                 break;
             default:
                 printf(" ");
@@ -80,10 +84,10 @@ void drawBoard(){
 int main(void){
     memset(board, 0, BOARD_HEIGHT*BOARD_WIDTH*sizeof(int));
     initDisplay();
-    printf("Welcome to tic tac toe!");
-    drawBoard();
+    printf("Welcome to tic tac toe!\n");
     while (1){
-        printf("Player %d, it's your turn! \n Where do you want to play?");
+        drawBoard();
+        printf("Player %d, it's your turn! \nWhere do you want to play?", player_num);
         char input;
         do{
             scanf(" %c",&input);
@@ -93,5 +97,6 @@ int main(void){
             }
         } while (input < 49 || input > 57);
         markBoard(input, player_num);
+        switchPlayer();
     }
 }
