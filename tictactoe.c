@@ -7,6 +7,7 @@
 int board [BOARD_HEIGHT][BOARD_WIDTH];
 int player_num = 1;
 int spaceOpen[9];
+bool isWinner = false;
 /*
 TODO: Win Conditions
 */
@@ -138,10 +139,19 @@ int main(void){
             }
         } while ((input < 49 || input > 57) || spaceOpen[input-'0'-1] > 0);
         markBoard(input, player_num); // Mark an X or O on the board
-        if(checkWin()){
+        isWinner = checkWin();
+        if(isWinner){
             break;
         } 
         switchPlayer(); // Switch to other player
         system("cls");
+    }
+    system("cls");
+    drawBoard();
+    if (isWinner){
+        printf("Player %d wins! Do you want to play again?(y or n)", player_num);
+    }
+    else{
+        printf("It's a cat's game! Do you want to play again?(y or n)");
     }
 }
