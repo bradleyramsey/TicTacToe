@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #define BOARD_HEIGHT 9
 #define BOARD_WIDTH 17
 int board [BOARD_HEIGHT][BOARD_WIDTH];
@@ -9,6 +10,8 @@ int spaceOpen[9];
 /*
 TODO: Win Conditions
 */
+
+// Initialize the board by drawing the grid and leaving all space empty
 void initDisplay(){
     for (int row = 0; row < BOARD_HEIGHT; row++){
         for (int col = 0; col < BOARD_WIDTH; col++){
@@ -79,6 +82,16 @@ void markBoard(char coord, int player_num){
     }
 }
 
+bool checkWin(){
+    return ((board[1][2] == player_num && board[1][8] == player_num && board[1][14] == player_num) ||
+        (board[4][2] == player_num && board[4][8] == player_num && board[4][14] == player_num) ||
+        (board[7][2] == player_num && board[7][8] == player_num && board[7][14] == player_num) ||
+        (board[1][2] == player_num && board[4][2] == player_num && board[7][2] == player_num) ||
+        (board[1][8] == player_num && board[4][8] == player_num && board[7][8] == player_num) ||
+        (board[1][14] == player_num && board[4][14] == player_num && board[7][14] == player_num) ||
+        (board[1][2] == player_num && board[4][8] == player_num && board[7][14] == player_num) ||
+        (board[1][14] == player_num && board[4][8] == player_num && board[7][2] == player_num));
+}
 void drawBoard(){
     for (int row = 0; row < BOARD_HEIGHT; row++){
         for (int col = 0; col < BOARD_WIDTH; col++){
@@ -125,7 +138,9 @@ int main(void){
             }
         } while ((input < 49 || input > 57) || spaceOpen[input-'0'-1] > 0);
         markBoard(input, player_num); // Mark an X or O on the board
-        checkWin(); 
+        if(checkWin()){
+            break;
+        } 
         switchPlayer(); // Switch to other player
         system("cls");
     }
